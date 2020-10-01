@@ -2,6 +2,8 @@ import {r1Btn1,r1Btn2,r1Btn3,r1Btn4,r2Btn1,r2Btn2,r2Btn3,r2Btn4,r3Btn1,r3Btn2,r3
 
 console.log(input1);
 // création des listeners pour chaque buttons ayant un chiffre cela va permettre de créer 
+
+// le 1
 r1Btn1.addEventListener("click",()=>{
     input1.value+=r1Btn1.innerText;
     console.log(input1.innerHTML);
@@ -83,12 +85,13 @@ r4Btn4.addEventListener("click",()=>{
 });
 
 // le = et le C.
-
+// Le C permet la suppresion de tout ton code.
 r4Btn1.addEventListener("click",()=>{
     input1.value=""
 })
+
+// Le fameux égale.
 r4Btn3.addEventListener("click",()=>{
-    
     let plus = input1.value.indexOf("+");
     let moins = input1.value.indexOf("-");
     let fois = input1.value.indexOf("*");
@@ -114,6 +117,42 @@ r4Btn3.addEventListener("click",()=>{
     console.log(stock2);
     console.log(input1.innerHTML);
 
-    // une fois qu'on clique sur égale un nombre apparait après 
-    
+    // une fois qu'on clique sur égale un nombre apparait après  
 });
+let body = document.body;
+body.addEventListener("keydown",(e) => {
+    if (e.key== "+" ||e.key== "-" ||e.key== "*" ||e.key== "/" ||e.key== "1" ||e.key== "2" ||e.key== "3" ||e.key== "4" ||e.key== "5" ||e.key== "6" || e.key== "7" || e.key== "8" ||e.key== "9") {
+        input1.value += e.key;
+    } else if (e.key =="="){
+            stock1 = input1.value;
+            let plus = input1.value.indexOf("+");
+            let moins = input1.value.indexOf("-");
+            let fois = input1.value.indexOf("*");
+            let diviser = input1.value.indexOf("/");
+            console.log(plus);
+            if (plus>0) {
+                stock2 = input1.value.slice(plus+1,input1.value.length);        
+                input1.value+=r4Btn3.innerHTML;
+                input1.value += parseInt(stock1)+parseInt(stock2);
+            }else if (moins>0) {
+                stock2 = input1.value.slice(moins+1,input1.value.length);        
+                input1.value+=r4Btn3.innerHTML;
+                input1.value += parseInt(stock1)-parseInt(stock2);
+            } else if (fois>0) {
+                stock2 = input1.value.slice(fois+1,input1.value.length);        
+                input1.value+=r4Btn3.innerHTML;
+                input1.value += parseInt(stock1)*parseInt(stock2);
+            } else if (diviser>0) {
+                stock2 = input1.value.slice(diviser+1,input1.value.length);        
+                input1.value+=r4Btn3.innerHTML;
+                input1.value += parseInt(stock1)/parseInt(stock2);
+            }
+            console.log(stock2);
+            console.log(input1.innerHTML);
+        
+            // une fois qu'on clique sur égale un nombre apparait après  
+
+    }else if (e.key=="Backspace") {
+        input1.value=""
+    }
+})
